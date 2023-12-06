@@ -15,6 +15,8 @@ int main (){
     int axe_x {400};
     int axe_y {0};
 
+    int direction {10};
+
 
     SetTargetFPS(60);
     while(WindowShouldClose() != true){
@@ -27,7 +29,11 @@ int main (){
         DrawRectangle (axe_x, axe_y, 50, 50, RED);
 
         //move the axe
-        axe_y += 10;
+        axe_y += direction;
+        if (axe_y > 500 || axe_y < 0 )
+        {
+            direction = -direction;
+        }
 
         //move circle
         if (IsKeyDown(KEY_D) && circle_x < 900)
@@ -37,6 +43,14 @@ int main (){
         if (IsKeyDown(KEY_A) && circle_x > 0)
         {
             circle_x -= 10;
+        }
+        if (IsKeyDown(KEY_W) && circle_y > 0)
+        {
+            circle_y -= 10;
+        }
+        if (IsKeyDown(KEY_S) && circle_y <500)
+        {
+            circle_y += 10;
         }
 
         // Game logic ends
